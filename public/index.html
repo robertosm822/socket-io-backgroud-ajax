@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io</title>
+    <style>
+        .box-msg-rest {
+            width: 80%;
+            height: auto;
+            border: 1px solid #dcdada;
+            padding: 10px;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <input type="text" value="" class="message">
+    <button type="button" class="send">Enviar</button>
+
+    <hr>
+
+    <div class="box-msg-rest" id="text"></div>
+    <!-- servidor Socket.io inicializado em linha de comando: node index.js -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        const socket = io('http://localhost:8081');
+        socket.on('eu', () => {
+            console.log("Estabelecida a Connection");
+        });
+        const message = document.querySelector('.message');
+        const send = document.querySelector('.send');
+        send.addEventListener('click', () => {
+            socket.emit('conversation', {
+                message: message.value
+            });
+        });
+        socket.on('respostas', (data) => {
+            //document.getElementById('text').innerHTML += data.message + "<br>";
+            document.getElementById('text').insertAdjacentHTML('beforeend', data.message + "<br>");
+        });
+    </script>
+
+    <!-- INICIALIZADO SERVIDOR PHP EM LINHA DE COMANDO PASTA /public/: php -S localhost:9090  -->
+
+</body>
+
+</html>

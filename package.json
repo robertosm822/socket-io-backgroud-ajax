@@ -1,0 +1,16 @@
+{
+    "name": "projeto-rsm-socket-io",
+    "version": "1.0.0",
+    "description": "Projeto de testes",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error"
+    },
+    "author": "Roberto Soares De Melo - fev/2021",
+    "dependencies": {
+        "jQuery": "^1.7.4",
+        "jsdom": "^16.4.0",
+        "node-fetch": "^2.6.1",
+        "socket.io": "^2.2.0"
+    }
+}
